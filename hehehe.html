@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>heheheh 😈</title>
+
+<style>
+body{
+    margin:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:linear-gradient(135deg,#6a11cb,#2575fc);
+    overflow:hidden;
+    font-family:Arial,sans-serif;
+}
+
+h1{
+    position:absolute;
+    top:40px;
+    color:white;
+}
+
+#btn{
+    position:absolute;
+    padding:18px 40px;
+    font-size:22px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    background:#ff4757;
+    color:white;
+    transition:.08s;
+}
+
+#msg{
+    display:none;
+    font-size:50px;
+    color:white;
+    text-align:center;
+}
+</style>
+</head>
+<body>
+
+<h1>Click the button to claim your prize! 🎁</h1>
+
+<button id="btn">Click Me!</button>
+
+<div id="msg">
+😂 GOTCHA! 😂<br>
+You were never going to catch it!
+</div>
+
+<script>
+
+const btn=document.getElementById("btn");
+
+function moveButton(){
+
+const w=window.innerWidth-btn.offsetWidth;
+const h=window.innerHeight-btn.offsetHeight;
+
+const x=Math.random()*w;
+const y=Math.random()*h;
+
+btn.style.left=x+"px";
+btn.style.top=y+"px";
+}
+
+moveButton();
+
+document.addEventListener("mousemove",(e)=>{
+
+const rect=btn.getBoundingClientRect();
+
+const dx=e.clientX-(rect.left+rect.width/2);
+const dy=e.clientY-(rect.top+rect.height/2);
+
+const distance=Math.sqrt(dx*dx+dy*dy);
+
+if(distance<120){
+    moveButton();
+}
+
+});
+
+setTimeout(()=>{
+
+btn.style.display="none";
+document.querySelector("h1").style.display="none";
+document.getElementById("msg").style.display="block";
+
+},15000);
+
+</script>
+
+</body>
+</html>
